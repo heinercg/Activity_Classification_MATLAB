@@ -16,6 +16,10 @@ The accuracy comparison between the selected decision tree, ensemble approach, a
 Shinmoto et al. [3] used this dataset for the same classification task described here. They applied the algorithm dynamically weighted conditional random fields (dWCRF). This method used weighted parameter statistics to learn the classes [3]. Shinnmoto and his team only utilized a cross-validation procedure to evaluate their results. Figure 3 compares the confusion matrices of the dWRCF and Naïve Bayes classifiers using a cross-validation approach. The dWCRF algorithm has a better performance than the Naïve Bayesian classifier. This could be the case because they employed more features in their analysis. In particular, the signal strength and phase might be important features. It has been demonstrated that the inclusion of these two features improves the classification of people's postures [5].
 
 References
+
+Dataset: https://archive.ics.uci.edu/ml/datasets/Activity+recognition+with+healthy+older+people+using+a+batteryless+w
+earable+senso
+
 [1]	A. Wickramasinghe, D. C. Ranasinghe, C. Fumeaux, K. D. Hill, and R. Visvanathan, “Sequence Learning with Passive RFID Sensors for Real-Time Bed-Egress Recognition in Older People,” IEEE J. Biomed. Health Inform., vol. 21, no. 4, pp. 917–929, Jul. 2017, doi: 10.1109/JBHI.2016.2576285.
 
 [2]	R. L. Shinmoto Torres, D. C. Ranasinghe, Qinfeng Shi, and A. P. Sample, “Sensor enabled wearable RFID technology for mitigating the risk of falls near beds,” in 2013 IEEE International Conference on RFID (RFID), Penang, Apr. 2013, pp. 191–198. doi: 10.1109/RFID.2013.6548154.
