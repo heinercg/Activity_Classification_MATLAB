@@ -17,8 +17,7 @@ Shinmoto et al. [3] used this dataset for the same classification task described
 
 References
 
-Dataset: https://archive.ics.uci.edu/ml/datasets/Activity+recognition+with+healthy+older+people+using+a+batteryless+w
-earable+senso
+Dataset: https://archive.ics.uci.edu/ml/datasets/Activity+recognition+with+healthy+older+people+using+a+batteryless+wearable+sensor
 
 [1]	A. Wickramasinghe, D. C. Ranasinghe, C. Fumeaux, K. D. Hill, and R. Visvanathan, “Sequence Learning with Passive RFID Sensors for Real-Time Bed-Egress Recognition in Older People,” IEEE J. Biomed. Health Inform., vol. 21, no. 4, pp. 917–929, Jul. 2017, doi: 10.1109/JBHI.2016.2576285.
 
@@ -26,6 +25,6 @@ earable+senso
 
 [3]	R. Shinmoto Torres, R. Visvanathan, S. Hoskins, A. van den Hengel, and D. Ranasinghe, “Effectiveness of a Batteryless and Wireless Wearable Sensor System for Identifying Bed and Chair Exits in Healthy Older People,” Sensors, vol. 16, no. 4, p. 546, Apr. 2016, doi: 10.3390/s16040546.
 
-[4]	R. L. Shinmoto Torres, D. C. Ranasinghe, and Q. Shi, “Evaluation of Wearable Sensor Tag Data Segmentation Approaches for Real Time Activity Classification in Elderly,” in Mobile and Ubiquitous Systems: Computing, Networking, and Services, vol. 131, I. Stojmenovic, Z. Cheng, and S. Guo, Eds. Cham: Springer International Publishing, 2014, pp. 384–395. doi: 10.1007/978-3-319-11569-6_30.
+[4]	R. L. Shinmoto Torres, D. C. Ranasinghe, and Q. Shi, “Evaluation of Wearable Sensor Tag Data Segmentation Approaches for Real-Time Activity Classification in Elderly,” in Mobile and Ubiquitous Systems: Computing, Networking, and Services, vol. 131, I. Stojmenovic, Z. Cheng, and S. Guo, Eds. Cham: Springer International Publishing, 2014, pp. 384–395. doi: 10.1007/978-3-319-11569-6_30.
 
 [5]	A. Wickramasinghe and D. C. Ranasinghe, “Recognising Activities in Real Time Using Body Worn Passive Sensors With Sparse Data Streams: To Interpolate or Not To Interpolate?,” in Proceedings of the 12th EAI International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services, Coimbra, Portugal, 2015. doi: 10.4108/eai.11-8-2015.151111.
