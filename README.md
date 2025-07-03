@@ -1,0 +1,72 @@
+# Activity_Classification
+1.	Introduction 
+The chosen dataset comprises motion information from 14 healthy older adults from 66 to 86 years old. The data come from battery-less wearable sensors positioned on their clothes at the sternum level. Participants performed certain activities such as walking (W), getting off a chair (GC), lying on bed (Ly), and getting off the bed (GB). Each activity represents a class label in the analysis.
+
+Falls of the elderly are costly as patients can have a substantial detriment in their quality of life and lead to an increase in their permanence in hospitals [1]. An activity detection system that alerts medical personnel about risky activities in old patients could reduce care costs and improve the quality of life in this part of the population.
+
+2.	Formulation 
+This problem can be studied as a classification problem because the objective is to detect which activity the patient is doing, and the respective activity labels were recorded during the experiments. The dataset has eight features as inputs, such as acceleration in the frontal, vertical, and lateral axis, record time, antenna ID, signal strength, reception phase, and frequency. The expected output is the determination of the activity performed by the patient. The data are contained in several files (one file per patient), and the gender is recorded in the filename. When the data were organized in a single matrix, one gender feature was added to the original data. Therefore, the final dataset had nine features and one activity label. 
+
+3.	Datasets
+The data was retrieved from the Center of Machine Learning Repository of the University of California, Irvine  [2]. The experiments were achieved in two different room settings using different patients in each environment [3]. The data from one room setting was chosen to train the models, and the other was utilized to test the models. This setup represents a good approach to a real scenario because the environment/patient dependency can be evaluated. Only four features, e.g., accelerations and gender, were chosen to process the data. The other features were discarded because they were dependable on the experiment settings. The time acquisition time depends on the activity sequence, the antenna id and signal strength depend on the room arrangement, and the phase and frequency depend on the data transmission settings. A Principal Component Analysis (PCA) was also performed for each model under test, and an accuracy performance comparison was made against no PCA analysis. The obtained results showed that the PCA did not add a significant improvement in the outcomes. Therefore, it was removed from the final analysis. Table 1 shows some statistics for each acceleration component. It can be seen that the data are very spread due to the passive nature (no battery needed) of the sensor [4]. Figure 1 depicts the histograms for each acceleration component. The histograms reveal some clusters around 0, 0.3, and 1 for the vertical component, around 0.4 and 1.2 for the frontal component, and around -0.9 and 0 for the lateral component. Also, these clusters show a Normal-like distribution. 
+
+Table 1 Mean and Standard deviation of accelerations.
+Acceleration Type	Frontal*	Lateral*	Vertical*
+Mean	0.5037	-0.739	0.269
+Standard Deviation	0.34	0.414	0.414
+Maximum Value	1.421	0.534	1.249
+Minimum Value	-0.466	-1.336	-0.266
+			* Acceleration is measured as a fraction of gravity.
+
+ 
+a)	Vertical acceleration histogram.	 
+b)	Frontal acceleration histogram.	 
+c)	Lateral acceleration histogram.
+Figure 1 Histograms for accelaration components. a) Vertical accelaration. b) Frontal accelaration. c) Lateral accelaration
+4.	Algorithms and Experiments
+Three classification algorithms were tested, e.g., Decision Tree, Naïve Bayes, and some Ensemble approach. The Decision Tree method was chosen due to its simplicity which makes him ideal for a baseline classifier to compare other more complex models, e.g., Naive Bayes and Ensemble classifiers. The Naïve Bayes classifier was chosen for this task because each acceleration component behaves like a normal distribution inside the same activity. Besides, these components are independent because they are orthogonal in the tridimensional space. The Ensemble approach was chosen to evaluate the improvement of this method over more inexpensive algorithms, e.g., Decision Trees. In all tests, 5-fold cross-validation was implemented to evaluate the algorithms, and a different room setting was used as the test set. 
+
+Three different Decision Trees algorithms were tested. All of them used the Gini's diversity index as the split criterion, and they had a different maximum number of splits, e.g., 3, 5, and 10. The accuracy under the validation and test sets of these Decision Trees were very similar, as can be seen in Table 2. Moreover, these methods had false negative rates (FNR) on the test set greater than 80 % for the classes GC and W. Due to the similarity between these approaches, the simplest method was chosen (maximum number of splits = 3) as the baseline to be compared with more complicated algorithms.
+
+Table 2 Accuracy of the Decision Tree methods
+Maximum Number of Splits	Accuracy of the validation set	Accuracy on the test set
+3	96.8 %	90 %
+5	97 %	90.5 %
+10	97.2 %	90 %
+
+Likewise, three different Ensemble methods were investigated. All of them used AdaBoost as the ensemble method with Decision Trees as learners. The hyperparameters-pair maximum number of splits and number of learners was changed, e.g., 3-20, 6-10, 12-5, to find the best ensemble process. Table 3 shows the accuracy comparison among the ensemble methods, which are very similar. The 12-5 ensemble approach has the minimum false negative rate on the test set for GC and W classes, 88.8% and 93.5%, respectively. This was the ensemble procedure chosen to compare the other two methods.
+ 
+Table 3 Accuracy of the Ensemble techniques
+Maximum Splits / Number of learners	Accuracy of the validation set	Accuracy on the test set
+3 / 20	96.8 %	90 %
+6 / 10 	97.1 %	89.9 %
+12 / 5	97.2 %	90.2 %
+
+The accuracy comparison between the selected decision tree, ensemble approach, and the Naïve Bayes method is presented in Table 4. The Naïve Bayes method shows a slight improvement in accuracy. 
+
+Table 4 Accuracy of the selected methods
+Selected Algorithm	Accuracy of the validation set	Accuracy on the test set
+Decision Tree	96.8 %	90 %
+Ensemble	97.2 %	90.5 %
+Naïve Bayes	97.1 %	92.5 %
+
+Figure 2 depicts the confusion matrices of the selected methods. The two classes, GC and W, are hard to classify correctly. Only the Naïve Bayes classifier has a true positive rate (TPR) greater than 50% on the class GC and the highest TPR on the W class (28.3%). However, the latter is still a low rate. 
+
+ 
+a)	Decision tree confusion matrix	 
+b)	Ensemble confusion matrix	 
+c)	Naïve Bayes Confusion Matrix
+Figure 2 Confusion matrices on the test set for the selected algorithms.
+Shinmoto et al. [3] used this dataset for the same classification task described here. They applied the algorithm dynamically weighted conditional random fields (dWCRF). This method used weighted parameter statistics to learn the classes [3]. Shinnmoto and his team only utilized a cross-validation procedure to evaluate their results. Figure 3 compares the confusion matrices of the dWRCF and Naïve Bayes classifiers using a cross-validation approach. The dWCRF algorithm has a better performance than the Naïve Bayesian classifier. This could be the case because they employed more features in their analysis. In particular, the signal strength and phase might be important features. It has been demonstrated that the inclusion of these two features improves the classification of people's postures [5].
+
+ 
+a)	Naïve Bayes confusion matrix	 
+b)	dWCRF classifier confusion matrix
+Figure 3 Confusion matrices for the Naive Bayes and dWCRF classifiers on the validation set.
+
+References
+[1]	A. Wickramasinghe, D. C. Ranasinghe, C. Fumeaux, K. D. Hill, and R. Visvanathan, “Sequence Learning with Passive RFID Sensors for Real-Time Bed-Egress Recognition in Older People,” IEEE J. Biomed. Health Inform., vol. 21, no. 4, pp. 917–929, Jul. 2017, doi: 10.1109/JBHI.2016.2576285.
+[2]	R. L. Shinmoto Torres, D. C. Ranasinghe, Qinfeng Shi, and A. P. Sample, “Sensor enabled wearable RFID technology for mitigating the risk of falls near beds,” in 2013 IEEE International Conference on RFID (RFID), Penang, Apr. 2013, pp. 191–198. doi: 10.1109/RFID.2013.6548154.
+[3]	R. Shinmoto Torres, R. Visvanathan, S. Hoskins, A. van den Hengel, and D. Ranasinghe, “Effectiveness of a Batteryless and Wireless Wearable Sensor System for Identifying Bed and Chair Exits in Healthy Older People,” Sensors, vol. 16, no. 4, p. 546, Apr. 2016, doi: 10.3390/s16040546.
+[4]	R. L. Shinmoto Torres, D. C. Ranasinghe, and Q. Shi, “Evaluation of Wearable Sensor Tag Data Segmentation Approaches for Real Time Activity Classification in Elderly,” in Mobile and Ubiquitous Systems: Computing, Networking, and Services, vol. 131, I. Stojmenovic, Z. Cheng, and S. Guo, Eds. Cham: Springer International Publishing, 2014, pp. 384–395. doi: 10.1007/978-3-319-11569-6_30.
+[5]	A. Wickramasinghe and D. C. Ranasinghe, “Recognising Activities in Real Time Using Body Worn Passive Sensors With Sparse Data Streams: To Interpolate or Not To Interpolate?,” in Proceedings of the 12th EAI International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services, Coimbra, Portugal, 2015. doi: 10.4108/eai.11-8-2015.151111.
