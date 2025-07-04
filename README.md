@@ -10,17 +10,29 @@ This repository contains the MATLAB code and analysis developed for the project:
 
 ## 📦 Repository Structure
 ├── Codes/                     # MATLAB scripts for classification models
+
 │   ├── Bagged_Trees.m
+
 │   ├── Boosted_trees.m
+
 │   ├── Gaussian_SVM.m
+
 │   ├── Linear_SVM.m
+
 │   ├── LogisticRegression.m
+
 │   ├── NaiveBayes.m
+
 │   ├── Neural_Network.m
+
 │   ├── Quadratic_SVM.m
+
 │   └── Tree_Classifier.m
+
 ├── Figures_and_tables/       # All figures and tables referenced in the project report
+
 ├── Project.pdf                # Final project report describing methodology and results
+
 └── README.md
 
 ---
